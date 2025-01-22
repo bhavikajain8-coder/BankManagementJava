@@ -1,17 +1,9 @@
 
 package bank.management.system;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Random;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-
+import javax.swing.*;
 import com.toedter.calendar.JDateChooser;
 
 public class Signupone  extends JFrame {
