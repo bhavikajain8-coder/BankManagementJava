@@ -12,7 +12,8 @@ public class Conn {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Correct database name
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankmanagementsystem", "root", "(A5harv)");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankmanagementsystem",
+             "root", "YourSqlPassword"); // Replace "YourSqlPassword"
             s = c.createStatement();
             System.out.println("Connection successful!");
         } catch (Exception e) {
