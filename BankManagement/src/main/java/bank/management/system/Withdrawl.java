@@ -3,17 +3,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.sql.*;
+import java.util.Date;
+                
 
-public class Deposit extends JFrame implements ActionListener{
+public class Withdrawl extends JFrame implements ActionListener{
  
     JTextField amount;
-    JButton withdraw,back;
+    JButton deposit,back;
     String pinnumber;
 
-    Deposit(String pinnumber){
+    Withdrawl(String pinnumber){
 
-     this.pinnumber=pinnumber;
-     setLayout(null);   
+        this.pinnumber=pinnumber;
+        setLayout(null);   
 
 
      ImageIcon i1=new ImageIcon(ClassLoader.getSystemResource("icons/atm2.jpg "));
@@ -24,25 +27,25 @@ public class Deposit extends JFrame implements ActionListener{
      add(image);
 
      //DEPSOTI LABEL-----------------------------------
-     JLabel text=new JLabel("Enter the amount to Withdraw");
+     JLabel text=new JLabel("Enter the amount to deposit");
      text.setForeground(Color.BLACK);
      text.setFont(new Font("System",Font.BOLD,25));
      text.setBounds(170,160,4000,40);
      image.add(text);
         
      //BLANK BOW BELWO DEPOSIT STATEMNT----------------
-     JTextField amount= new JTextField();
+     amount= new JTextField();
      amount.setFont(new Font("Serif",Font.BOLD,22));
      amount.setBounds(170,210,400,28);
      image.add(amount);
 
      //DEPOSIT BUTTON ----------------------------------- 
-     withdraw=new JButton("DEPOSIT");
-     withdraw.setFont(new Font("Serif",Font.BOLD,15));
+     deposit=new JButton("DEPOSIT");
+     deposit.setFont(new Font("Serif",Font.BOLD,15));
      //deposit.setForeground(Color.BLACK);
-     withdraw.setBounds(550,340,150,30);
-     withdraw.addActionListener(this); 
-     image.add(withdraw);
+     deposit.setBounds(550,340,150,30);
+     deposit.addActionListener(this); 
+     image.add(deposit);
 
      //BANK i.e. EXIT BUTTON ------------
      back=new JButton("BACK");
@@ -60,29 +63,31 @@ public class Deposit extends JFrame implements ActionListener{
 
     
     public void actionPerformed(ActionEvent ae){
-        if( ae.getSource()==withdraw){
+        if( ae.getSource()==deposit){
           String number= amount.getText();
           Date date=new Date();
-            if(number.equals("")){
+           if(number.equals("")){
                 JOptionPane.showMessageDialog(null,"Please enter amount to deposit");
-            }   else {
-                    try{
-                        Conn conn=new Conn();
-                        String query="insert into bank values('"+pinnumber+"','"+date+"', 'Depsoit','"+number+"')";
-                        conn.s.executeUpdate(query);
-                        JOptionPane.showMessageDialog(null,"RS"+number+"Depsosited Successfully");
-                        setVisible(false);
-                        new Transactions(pinnumber).setVisible(true);
-                    }catch (Exception e) {
-                            System.out.println(e);  
-                        }
-
-                }}else if(ae.getSource()==back){
+             }else {
+                try{
+                    Conn conn=new Conn();
+                    String query="insert into bank values('"+pinnumber+"','"+date+"', 'Depsoit','"+number+"')";
+                    conn.s.executeUpdate(query);
+                    JOptionPane.showMessageDialog(null,"RS"+number+"Depsosited Successfully");
                     setVisible(false);
                     new Transactions(pinnumber).setVisible(true);
+                    }catch (Exception e){
+                    System.out.println(e);
+                    }
+
+                }} else if(ae.getSource()==back){
+                setVisible(false);
+                new Transactions(pinnumber).setVisible(true);
             
                 }
-        
+
+
+
     }
     
 
@@ -90,7 +95,10 @@ public class Deposit extends JFrame implements ActionListener{
     public static void main(String args[]){
 
 
-     new Deposit("");
+     new Withdrawl("");
     }
 
 }
+
+    
+

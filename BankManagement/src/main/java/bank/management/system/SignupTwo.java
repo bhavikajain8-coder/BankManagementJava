@@ -2,16 +2,18 @@ package bank.management.system;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 
-public class SignupTwo extends JFrame{
+public class SignupTwo extends JFrame implements ActionListener{
 
   JTextField incomeTextField,pan,aadhar;
   JButton next;
   JRadioButton syes,sno,eyes,eno;
-  JComboBox occupation,education,religion,category,income;
+  JComboBox<String> occupation,education,religion,category,income;
+  JCheckBox customIncomeCheck;
   String formno;
   
 
@@ -35,7 +37,7 @@ public class SignupTwo extends JFrame{
       add(religionlb);
 
       String valReligion[]={"HINDU","MUSLIM","SIKH","CHRISTIAN","OTHER"};
-      religion=new JComboBox(valReligion);
+      religion=new JComboBox<>(valReligion);
       religion.setBounds(300, 140, 400, 30);
       religion.setBackground(Color.decode("#FFFBE4"));
       add(religion);
@@ -47,7 +49,7 @@ public class SignupTwo extends JFrame{
       add(categorylb);
 
       String valcategory[]={"GENERAL","OBC","SC","ST","OTHER"};
-      category= new JComboBox(valcategory);
+      category= new JComboBox<>(valcategory);
       category.setBounds(300, 190, 400, 30);
       category.setBackground(Color.decode("#FFFBE4"));
       add(category);      
@@ -59,7 +61,7 @@ public class SignupTwo extends JFrame{
       add( incomelb);
 
       String incomecategory[] = {"NULL", "<1,50,000", "<2,50,000", "<5,00,000", "UPTO 10,00,000"};
-      income = new JComboBox(incomecategory);
+      income = new JComboBox<>(incomecategory);
       income.setBounds(300, 240, 400, 30);  // Corrected position
       income.setBackground(Color.decode("#FFFBE4"));
       add(income);
@@ -82,7 +84,7 @@ public class SignupTwo extends JFrame{
       add(qualifn);
 
       String educationValues[] = {"NON-GRADUATE", "GRADUATE", "POST-GRADUATE", "DOCTRATE", "OTHER"};
-      education = new JComboBox(educationValues);
+      education = new JComboBox<>(educationValues);
       education.setBounds(300, 315, 400, 30);  // Corrected position
       education.setBackground(Color.decode("#FFFBE4"));
       add(education);
@@ -94,7 +96,7 @@ public class SignupTwo extends JFrame{
       add(  occupn);
 
       String occupationValues[] = {"SALARIED", "SELF-EMPLOYED", "BUSINESS", "RETIRED","STUDENT" ,"OTHER"};
-      occupation = new JComboBox(occupationValues);
+      occupation = new JComboBox<>(occupationValues);
       occupation.setBounds(300, 390, 400, 30);  // Corrected position
       occupation.setBackground(Color.decode("#FFFBE4"));
       add(occupation);
