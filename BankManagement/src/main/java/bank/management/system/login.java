@@ -1,18 +1,22 @@
 
 package bank.management.system;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*; 
 
-import java.awt.Color;
+/*import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionListener;*/
 
-import javax.swing.ImageIcon;
+/*import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JTextField;*/
 
 public class login  extends JFrame implements ActionListener{
  
@@ -89,6 +93,23 @@ public class login  extends JFrame implements ActionListener{
               pinTextField.setText("");
            
        } else if(ae.getSource() == login){
+            Conn conn=new Conn();
+            String cardnumber = cardTextField.getText();
+           // String pinnumber  = pinTextField.getText();
+           String pinnumber = new String(pinTextField.getPassword());
+
+            String query="select * from login where cardnumber ='"+cardnumber+"' AND pin ='"+pinnumber+"'";
+            try {
+                ResultSet rs = conn.s.executeQuery(query);
+                if(rs.next()){
+                    setVisible(false);
+                    new Transactions(pinnumber).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null,"Incorrect card number pr PIN");
+                } 
+            } catch(Exception e){
+                System.out.println(e);
+            }
            
        } else if (ae.getSource() == signup){
            
